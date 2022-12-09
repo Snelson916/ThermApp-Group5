@@ -7,15 +7,15 @@ public class selfTest {
     public static boolean selfTest (boolean pass){
 
         //Checking battery levels
-        float batteryLevel = 0;
+        double batteryLevel = 0.0;
         if (batteryLevel <= 0.0) {
             battery = false;
         }
 
         //Making sure the temperature collected falls within the appropriate range
         //*Verify temperature range
-        float tempLevel = 0;
-        if ((tempLevel > 85.0) && (tempLevel < 110.0)) {
+        double tempLevel = 0.0;
+        if ((tempLevel > 90.0) && (tempLevel < 110.0)) {
             sensor = true;
         }
 
