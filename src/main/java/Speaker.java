@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public class Speaker {
+public class Speaker {
+    public static void activate() {
+        System.out.println("* beep *");
+    }
 }
