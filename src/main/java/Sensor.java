@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Sensor {
     public static double randomDoubleGen(double min, double max){
@@ -22,9 +23,11 @@ public class Sensor {
         return l;
     }
 
-    public static double getAverageTemperature() throws FileNotFoundException {
+    public static double getAverageTemperature() throws FileNotFoundException, InterruptedException {
         //Scanner input = new Scanner("temperature");
         List input = doubletListInRange();
+//        TimeUnit.SECONDS.sleep(10);
+
         Iterator<Double> iterator = doubletListInRange().iterator();
         double sum = 0.0;
         int count = 0;
@@ -34,13 +37,9 @@ public class Sensor {
             sum += next;
         }
         double average = sum / count;
-        for(int i = 0; i <= 4; i++){
-            System.out.println("beep");
-        }
-        System.out.println("Temperature =" + average);
         return average;
     }
-    public static void sendTemperature() throws FileNotFoundException {
+    public static void sendTemperature() throws FileNotFoundException, InterruptedException {
         getAverageTemperature();
     }
 

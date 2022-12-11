@@ -1,31 +1,32 @@
-public class selfTest {
+import java.io.FileNotFoundException;
+
+public class SelfTest {
 
     private static boolean battery;
     private static boolean sensor;
     private static boolean display;
 
-    public static boolean selfTest (boolean pass){
+    public static boolean selfTest (int batteryLevel) throws FileNotFoundException, InterruptedException {
 
         //Checking battery levels
-        double batteryLevel = 0.0;
-        if (batteryLevel <= 0.0) {
-            battery = false;
+        if (batteryLevel > 0) {
+            battery = true;
         }
 
         //Making sure the temperature collected falls within the appropriate range
         //*Verify temperature range
-        double tempLevel = 0.0;
+        double tempLevel = Sensor.getAverageTemperature();
         if ((tempLevel > 90.0) && (tempLevel < 110.0)) {
             sensor = true;
         }
 
         //Checking display
-        boolean displayPass;
+        boolean displayPass = false;
         String ready = "READY";
-        if (System.out.print(ready)) {
+        if (ready.equals("READY")) {
             displayPass = true;
         }
-        if (displayPass = true) {
+        if (displayPass) {
             display = true;
         }
 
@@ -34,12 +35,11 @@ public class selfTest {
          * sensor should be collecting data (temperature)
          * display should be working (ready screen)
           */
-        if ((display == true) && (sensor == true) && (battery == true)){
-            pass = true;
+        if ((display) && (sensor) && (battery)){
+            return true;
         } else {
-            pass = false;
+            return false;
         }
-        return pass;
     }
     //After passing self test, return to display screen
 }
