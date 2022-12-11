@@ -34,10 +34,9 @@ public class Sensor {
             sum += next;
         }
         double average = sum / count;
-        System.out.println("beep");
-        System.out.println("beep");
-        System.out.println("beep");
-        System.out.println("beep");
+        for(int i = 0; i <= 4; i++){
+            System.out.println("beep");
+        }
         System.out.println("Temperature =" + average);
         return average;
     }
