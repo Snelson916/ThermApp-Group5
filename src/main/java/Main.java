@@ -12,12 +12,12 @@ public class Main {
 
     public void powerButton(int timeHeld) throws FileNotFoundException, InterruptedException {
         /** If device is powered OFF and has sufficient battery level: Power on device */
-        if (this.state == "OFF" && this.batteryLevel > 0) {
+        if (this.state.equals("OFF") && this.batteryLevel > 0) {
             this.state = "ON";
             this.recordTemperature();
         }
         /** If device is powered on but user  holds power button for at least 5 seconds: Reset device */
-        else if (this.state == "ON" && timeHeld >= 5) {
+        else if (this.state.equals("ON") && timeHeld >= 5) {
             Speaker.activate();
             this.recordTemperature();
         }
@@ -28,7 +28,7 @@ public class Main {
     }
 
     public void recordTemperature() throws FileNotFoundException, InterruptedException {
-        if (this.state == "ON") {
+        if (this.state.equals("ON")) {
 
             /** Automatically run Self Test upon being powered on to ensure the device hardware is functioning properly
              * Send message to display to alert user that self test is being conducted.
