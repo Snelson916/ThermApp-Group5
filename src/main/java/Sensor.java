@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Sensor {
+    /** Class for sudo temperature sensor on device */
     public static double randomDoubleGen(double min, double max){
         return (Math.random() * (max - min)) + min;
     }
@@ -36,12 +37,7 @@ public class Sensor {
             count++;
             sum += next;
         }
-        double average = sum / count;
+        double average = Math.round((sum / count)* 100.0) / 100.0;
         return average;
     }
-    public static void sendTemperature() throws FileNotFoundException, InterruptedException {
-        getAverageTemperature();
-    }
-
-    // Call in Main to get temperature reading?
 }
