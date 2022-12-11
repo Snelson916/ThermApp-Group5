@@ -37,7 +37,7 @@ public class Sensor {
             count++;
             sum += next;
         }
-        double average = Math.round((sum / count)* 100.0) / 100.0;
+        double average = Math.round((sum / count)* 10.0) / 10.0;
         return average;
     }
 }
