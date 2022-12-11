@@ -9,7 +9,7 @@ public class SelfTest {
     public static boolean selfTest (int batteryLevel) throws FileNotFoundException, InterruptedException {
 
         /** Checking battery levels */
-        if (batteryLevel > 0) {
+        if (batteryLevel > 0.1) {
             battery = true;
         }
 
