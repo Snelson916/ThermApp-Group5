@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 
 public class Main {
     /**
@@ -55,11 +56,13 @@ public class Main {
                 /** If Device passed Self Test: Automatically begin recording temperature. */
                 for (int i = 0; i < 3; i++) Speaker.activate();
                 /** Upon successful recording of temperature, message with temp is sent to display */
-                if (Sensor.getAverageTemperature() > 90.0 && Sensor.getAverageTemperature() < 110.0) {
-                    Display.show(Sensor.getAverageTemperature() + " °F");
-                } else {
-                    System.out.println("Reset?");//for temperature not in range reset
-                }
+                Sensor.doubletListInRange();
+                if (Sensor.getAverageTemperature() > 90.0 && Sensor.getAverageTemperature() < 110.0) {//normal range
+                    DecimalFormat format = new DecimalFormat("###.#");
+                    Display.show(format.format(Sensor.getAverageTemperature()) + " °F");
+                } //else {
+                    //System.out.println("Reset?");//for temperature not in range reset
+                //}
             } else {
                 /** Device will emit 4 audio beeps to indicate an unsuccessful self test */
                 for (int i = 0; i < 4; i++) Speaker.activate();

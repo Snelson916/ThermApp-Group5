@@ -22,12 +22,11 @@ public class SelfTest {
         //check status of sensor, good - continue with display
         boolean sensor = false;
         String pass = "good";
-        if(sensor = true) {
 
             if (pass.equals("good")) {
                 sensor = true;
             }
-        }
+
 
         //feel like a test case - sensor state should be "good" true or false?
 

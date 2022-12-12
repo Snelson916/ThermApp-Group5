@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Sensor {
 
     public static double getAverageTemperature() throws FileNotFoundException, InterruptedException {
 //        Scanner input = new Scanner("temperature");
-//        List input = doubletListInRange();
+//        doubletListInRange();
 //        TimeUnit.SECONDS.sleep(10);
 
         double sum = 0.0;
@@ -41,8 +42,7 @@ public class Sensor {
         if (count == 0) {
             return 0.0;
         }
-        double average = Math.round((sum / (double)count));
-//        System.out.println(average);
+        double average = (sum / (double)count);
         return average;
     }
 }
