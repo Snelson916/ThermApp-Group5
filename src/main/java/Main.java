@@ -16,6 +16,7 @@ public class Main {
         /** If device is powered OFF and has sufficient battery level: Power on device */
         if (this.state.equals("OFF") && this.batteryLevel > 0) {
             this.state = "ON";
+            System.out.println(this.state);
             this.recordTemperature();
         }
         /** If device is powered on but user  holds power button for at least 5 seconds: Reset device */
@@ -25,6 +26,13 @@ public class Main {
         }
         /** If user clicks  power button when device is already powered on: Power off device. */
         else {
+            this.state = "OFF";
+            System.out.println(this.state);
+        }
+    }
+
+    public void deviceIdle(int timeSeconds) {
+        if (timeSeconds >= 600 ) {
             this.state = "OFF";
         }
     }
@@ -67,10 +75,24 @@ public class Main {
         var Battery = new Battery(75);
         /** Instantiate mock Thermometer */
         var Thermometer = new Main(Battery.level);
+        System.out.println(Thermometer.state);
 
-        /** User activates device power button */
+
+        /** User activates device power button: Power On */
         Thermometer.powerButton(1);
+
+        Thermometer.deviceIdle(60);
+
         /** User activates device power button for 5 seconds activating a reset */
         Thermometer.powerButton(5);
+
+        /** Device is inactive for 10 minutes and therefore powers off */
+        Thermometer.deviceIdle(600);
+        System.out.println(Thermometer.state);
+
+        /** User activates device power button: Power On */
+        Thermometer.powerButton(1);
+        /** User activates device power button: Power off  */
+        Thermometer.powerButton(1);
     }
 }
