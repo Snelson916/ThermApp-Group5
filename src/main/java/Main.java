@@ -1,11 +1,13 @@
 import java.io.FileNotFoundException;
 
 public class Main {
-    /** Main logic that connects the various pieces of the device into a functioning Thermometer device / application */
+    /**
+     * Main logic that connects the various pieces of the device into a functioning Thermometer device / application
+     */
     String state;
     int batteryLevel;
 
-    public Main (int batteryLevel) {
+    public Main(int batteryLevel) {
         state = "OFF";
         this.batteryLevel = batteryLevel;
     }
@@ -36,7 +38,7 @@ public class Main {
             Display.show("Performing Self Test...");
 
             if (SelfTest.selfTest(this.batteryLevel)) {
-                /** Device will emit 3 audio beeps to indicate a successful self test */
+                /** Device will emit 2 audio beeps to indicate a successful self test */
                 for (int i = 0; i < 2; i++) Speaker.activate();
 
                 /** Message sent to display to indicate device is recording temperature. */
@@ -45,15 +47,20 @@ public class Main {
                 /** If Device passed Self Test: Automatically begin recording temperature. */
                 for (int i = 0; i < 3; i++) Speaker.activate();
                 /** Upon successful recording of temperature, message with temp is sent to display */
-                Display.show(Sensor.getAverageTemperature() + " F°");
-            }
-            else {
+                if (Sensor.getAverageTemperature() > 90.0 && Sensor.getAverageTemperature() < 110.0) {
+                    Display.show(Sensor.getAverageTemperature() + " °F");
+                } else {
+                    System.out.println("Reset?");//for temperature not in range reset
+                }
+            } else {
                 /** Device will emit 4 audio beeps to indicate an unsuccessful self test */
                 for (int i = 0; i < 4; i++) Speaker.activate();
                 this.state = "OFF";
             }
         }
     }
+
+
 
     public static void main (String[] args) throws FileNotFoundException, InterruptedException {
         /** Instantiate mock battery with power level at 75% */

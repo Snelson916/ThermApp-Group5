@@ -14,10 +14,12 @@ public class SelfTest {
         }
 
         /** Making sure the temperature collected falls within the appropriate range */
+        //read 10 temperature readings
+        Sensor.doubletListInRange();
         double tempLevel = Sensor.getAverageTemperature();
         if ((tempLevel > 90.0) && (tempLevel < 110.0)) {
             sensor = true;
-        }
+        }//feel like a test case - sensor state should be "good" true or false?
 
         /** Checking display */
         boolean displayPass = false;

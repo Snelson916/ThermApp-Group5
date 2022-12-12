@@ -8,36 +8,41 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Sensor {
-    /** Class for sudo temperature sensor on device */
+    /** Class for pseudo temperature sensor on device */
+    static ArrayList<Double> temperatures = new ArrayList<>();
+    private static final int NUMBER = 10;//number of temperature readings
     public static double randomDoubleGen(double min, double max){
         return (Math.random() * (max - min)) + min;
     }
 
     public static List doubletListInRange() throws FileNotFoundException {
-        List<Double> l = new ArrayList<>();
-        for (int i = 0; i<10; i++){ //can modify i to desired number of readings
+        temperatures = new ArrayList<>();
+        for (int i = 0; i<NUMBER; i++){ //can modify i to desired number of readings
             double randomNum = randomDoubleGen(97.0, 100.4);//for human temp normal range
-            l.add(randomNum);
+            temperatures.add(randomNum);
         }
         //PrintStream file = new PrintStream(new File("temperatures"));
         //l.forEach(System.out::println);
-        return l;
+        return temperatures;
     }
 
     public static double getAverageTemperature() throws FileNotFoundException, InterruptedException {
-        //Scanner input = new Scanner("temperature");
-        List input = doubletListInRange();
+//        Scanner input = new Scanner("temperature");
+//        List input = doubletListInRange();
 //        TimeUnit.SECONDS.sleep(10);
 
-        Iterator<Double> iterator = doubletListInRange().iterator();
         double sum = 0.0;
         int count = 0;
-        while (iterator.hasNext()) {
-            double next = iterator.next();
+        for (int i = 0; i < temperatures.size(); i++) {
+            double next = temperatures.get(i);
             count++;
             sum += next;
         }
-        double average = Math.round((sum / count)* 10.0) / 10.0;
+        if (count == 0) {
+            return 0.0;
+        }
+        double average = Math.round((sum / (double)count));
+//        System.out.println(average);
         return average;
     }
 }
