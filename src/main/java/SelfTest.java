@@ -9,17 +9,27 @@ public class SelfTest {
     public static boolean selfTest (int batteryLevel) throws FileNotFoundException, InterruptedException {
 
         /** Checking battery levels */
-        if (batteryLevel > 0.1) {
+        if (batteryLevel > 10) {
             battery = true;
         }
 
+
         /** Making sure the temperature collected falls within the appropriate range */
         //read 10 temperature readings
-        Sensor.doubletListInRange();
-        double tempLevel = Sensor.getAverageTemperature();
-        if ((tempLevel > 90.0) && (tempLevel < 110.0)) {
-            sensor = true;
-        }//feel like a test case - sensor state should be "good" true or false?
+        //Sensor.doubletListInRange();
+        //double tempLevel = Sensor.getAverageTemperature();
+        //if ((tempLevel > 90.0) && (tempLevel < 110.0)) {
+        //check status of sensor, good - continue with display
+        boolean sensor = false;
+        String pass = "good";
+        if(sensor = true) {
+
+            if (pass.equals("good")) {
+                sensor = true;
+            }
+        }
+
+        //feel like a test case - sensor state should be "good" true or false?
 
         /** Checking display */
         boolean displayPass = false;
@@ -32,7 +42,7 @@ public class SelfTest {
         }
 
         /** To pass the self test:
-         * battery levels should be above 0
+         * battery levels should be above 10
          * sensor should be collecting data (temperature)
          * display should be working (ready screen)
           */
